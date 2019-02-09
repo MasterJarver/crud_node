@@ -5,9 +5,9 @@ const port = process.env.PORT || 3000; // берем порт из окруже�
 // configure our application
 
 // set the routes
-app.get('/', (req, res) => {
-    res.send('Hello, I am the app!');
-});
+app.use(require('./app/routes')); // use custom route
+
+
 // start our server
 app.listen(port, () => { // старт прослушки
     console.log(`Server listening on http://localhost:${port}`);
