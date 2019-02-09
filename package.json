@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/MasterJarver/crud_node/issues"
   },
-  "homepage": "https://github.com/MasterJarver/crud_node#readme"
+  "homepage": "https://github.com/MasterJarver/crud_node#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
