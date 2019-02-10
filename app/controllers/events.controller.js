@@ -55,5 +55,17 @@ function showCreate(req, res) {
 }
 // process create form
 function processCreate(req, res) {
-
+    // create a new event
+    const event = new Event({ // создание нового ивента
+        name: req.body.name, // запись в поле из post запроса name
+        slug: req.body.name.toString().toLowerCase(),
+        description: req.body.description // запись в поле из post запроса description
+    });
+    // save event
+    event.save((err) => {
+        if(err)
+            throw err; // выброс исключения
+        // redirect to the newly created event
+        res.redirect(`/events/${event.slug}`);
+    })
 }
