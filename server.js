@@ -6,8 +6,20 @@ const app = express(); // инициализация express приложени�
 const port = process.env.PORT || 3000; // берем порт из окружения или 3000 по дефолту
 const expressLayouts = require('express-ejs-layouts'); // модуль для работы с шаблонами
 const mongoose = require('mongoose'); // модуль для работы с бд
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); // мудль для работы с телом POST запроса
+const session = require('express-session'); // для работы с сесиями
+const cookieParser = require('cookie-parser'); //парсер куки
+const flash = require('connect-flash');
 // configure our application
+// set sessions and cookie parser
+app.use(cookieParser()); // использование cookieParser
+app.use(session({ // использование сессий
+    secret: process.env.SECRET,
+    cookie: {maxAge: 60000},
+    resave: false, // forces the session to be saved back
+    saveUninitialized: false // don't save unmodified
+}));
+app.use(flash());// использование flash сообщений
 // tell the express where to look for static assets
 app.use(express.static(__dirname + '/public')); // указать express где брать статические файлы
 // set ejs as our templating engine
