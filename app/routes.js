@@ -9,4 +9,5 @@ module.exports = router; // экспорт экземпляра роутера
 // main routes
 router.get('/', mainController.showHome); // отображение гравной страницы
 // event routes
-router.get('/events', eventsController.showEvents); // отображение ивентов
+router.get('/events/',       eventsController.showEvents); // отображение ивентов
+router.get('/events/:slug', eventsController.showSingle); // отображение одного ивента

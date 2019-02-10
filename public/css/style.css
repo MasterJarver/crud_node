@@ -3,13 +3,11 @@ body {
     line-height: 1.5;
 }
 /* header */
-#site-header .navbar {
+#site-header .navbar, .navbar-brand {
     border-radius: 0;
     border: none;
     margin: 0;
     background: #222;
-}
-#site-header .navbar-brand {
     color: #999;
 }
 /* main section */
