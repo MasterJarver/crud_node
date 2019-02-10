@@ -11,3 +11,6 @@ router.get('/', mainController.showHome); // отображение гравно
 // event routes
 router.get('/events/',       eventsController.showEvents); // отображение ивентов
 router.get('/events/:slug', eventsController.showSingle); // отображение одного ивента
+// create events
+// edit events
+// delete events
