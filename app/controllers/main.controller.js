@@ -2,6 +2,6 @@
 module.exports = { // экспорт объекта с полями
     // show the home page
     showHome: (req, res) => { // метод showHome
-        res.send('Hello, I am the app!');
+        res.render('pages/home'); // отрисовка шаблона, ищет в views/pages/home.ejs
     }
 };
