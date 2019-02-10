@@ -10,6 +10,13 @@ body {
     background: #222;
     color: #999;
 }
+.nav li {
+    display:inline-block;
+}
+.custom-link {
+    font-size: 16px;
+    margin-left: 20px;
+}
 .col-centered {
     float: none;
     margin: 0 auto;
