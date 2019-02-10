@@ -19,6 +19,7 @@
   "homepage": "https://github.com/MasterJarver/crud_node#readme",
   "dependencies": {
     "acceptor-middlewares": "^0.3.3",
+    "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "dotenv-assert": "^3.0.0",
     "dotenv-export": "^2.0.0",

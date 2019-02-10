@@ -1,8 +1,10 @@
 const Event = require('../models/event'); // подключение класса модели ивента
 module.exports = { // экспрт функии получения даннх ивентов
-    showEvents : showEvents,
-    showSingle : showSingle,
-    seedEvents : seedEvents
+    showEvents: showEvents,
+    showSingle: showSingle,
+    seedEvents: seedEvents,
+    showCreate: showCreate,
+    processCreate: processCreate
 };
 // show all events
 function showEvents(req,res) { // функция показа
@@ -46,4 +48,12 @@ function seedEvents(req, res) {
     });
     // seeded!
     res.send('Database seeded!');
+}
+// show the create form
+function showCreate(req, res) {
+    res.render('pages/create');
+}
+// process create form
+function processCreate(req, res) {
+
 }
