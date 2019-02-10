@@ -1,3 +1,5 @@
+// load environment variables
+require('dotenv').config(); // загрузка переменных окружения
 // grab our dependencies
 const express = require('express'); // модуль express
 const app = express(); // инициализация express приложения
@@ -11,7 +13,7 @@ app.use(express.static(__dirname + '/public')); // указать express где
 app.set('view engine', 'ejs'); // указывает express шаблон вью для использования
 app.use(expressLayouts); // использование шаблона в приложеии
 // connect to ur database
-mongoose.connect('mongodb://localhost:27017');
+mongoose.connect(process.env.DB_URI); // коннект к бд используя пепеменную окружения
 
 
 // set the routes

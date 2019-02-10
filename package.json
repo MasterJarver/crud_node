@@ -19,6 +19,11 @@
   "homepage": "https://github.com/MasterJarver/crud_node#readme",
   "dependencies": {
     "dotenv": "^6.2.0",
+    "dotenv-assert": "^3.0.0",
+    "dotenv-export": "^2.0.0",
+    "dotenv-loader": "^2.0.1",
+    "dotenv-node": "0.0.2",
+    "dotenv-parse-variables": "^0.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-ejs-layouts": "^2.5.0",
