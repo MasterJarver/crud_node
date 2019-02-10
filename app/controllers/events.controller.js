@@ -1,3 +1,4 @@
+const Event = require('../models/event'); // подключение класса модели ивента
 module.exports = { // экспрт функии получения даннх ивентов
     // show all events
     showEvents: (req,res) => { // функция показа

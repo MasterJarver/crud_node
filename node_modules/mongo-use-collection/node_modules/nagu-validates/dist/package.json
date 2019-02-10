@@ -1,0 +1,14 @@
+{
+  "name": "nagu-validates",
+  "version": "0.0.3",
+  "description": "",
+  "repository": "",
+  "author": "na57",
+  "license": "MIT",
+  "keywords": [],
+  "main": "dist/index.js",
+  "jsnext:main": "dist/index.es6.js",
+  "dependencies": {
+    "babel-runtime": "^6.6.1"
+  }
+}
