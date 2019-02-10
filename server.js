@@ -10,7 +10,7 @@ const bodyParser = require('body-parser'); // мудль для работы с 
 const session = require('express-session'); // для работы с сесиями
 const cookieParser = require('cookie-parser'); //парсер куки
 const flash = require('connect-flash'); // мудль для использования флеш сообшений
-const expressvalidator = require('express-validator'); // моудль для валидации
+const expressValidator = require('express-validator'); // моудль для валидации
 // configure our application
 // set sessions and cookie parser
 app.use(cookieParser()); // использование cookieParser
@@ -30,7 +30,7 @@ app.use(expressLayouts); // использование шаблона в при�
 mongoose.connect(process.env.DB_URI); // коннект к бд используя пепеменную окружения
 // use body parser to grab info from a form
 app.use(bodyParser.urlencoded({extended: true})); // использование пакета в приложении
-
+app.use(expressValidator()); // использование валидатора
 // set the routes
 app.use(require('./app/routes')); // use custom route
 
