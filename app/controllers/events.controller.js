@@ -27,10 +27,10 @@ function showSingle(req, res) {
 function seedEvents(req, res) {
     // create some events
     const events = [
-        {name: 'Basketball', description: 'Throwing into a basket.'},
-        {name: 'Swimming', description: 'Travelling distance by water.'},
-        {name: 'Weightlifting', description: 'Lifting heavy things up.'},
-        {name: 'Ping Pong', description: 'Super fast paddles'}
+        {name: 'Basketball', slug: 'basketball', description: 'Throwing into a basket.'},
+        {name: 'Swimming', slug: 'swimming', description: 'Travelling distance by water.'},
+        {name: 'Weightlifting', slug: 'weightlifting', description: 'Lifting heavy things up.'},
+        {name: 'Ping Pong', slug: 'ping pong', description: 'Super fast paddles'}
     ];
     // use the Event model to insert/save
     Event.remove({}, () => { // удаление всех записей в коллекции
