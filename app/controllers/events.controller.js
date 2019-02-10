@@ -20,8 +20,13 @@ function showEvents(req,res) { // функция показа
 // show a single event
 function showSingle(req, res) {
     // get a single event
-    const event = {name: 'Basketball', slug: 'basketball', description: 'Throwing into a basket.'};
-    res.render('pages/single', {event: event});
+    Event.findOne({slug: req.params.slug}, (err, event) => { // ищем конкретную запись в бд
+        if(err) {
+            res.status(404);
+            res.send('Event not found');
+        }
+        res.render('pages/single', {event: event});
+    });
 }
 // seed our database
 function seedEvents(req, res) {
