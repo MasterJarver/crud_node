@@ -9,7 +9,8 @@ const mongoose = require('mongoose'); // модуль для работы с б�
 const bodyParser = require('body-parser'); // мудль для работы с телом POST запроса
 const session = require('express-session'); // для работы с сесиями
 const cookieParser = require('cookie-parser'); //парсер куки
-const flash = require('connect-flash');
+const flash = require('connect-flash'); // мудль для использования флеш сообшений
+const expressvalidator = require('express-validator'); // моудль для валидации
 // configure our application
 // set sessions and cookie parser
 app.use(cookieParser()); // использование cookieParser
