@@ -6,7 +6,8 @@ module.exports = { // экспрт функии получения даннх и
     showCreate: showCreate,
     processCreate: processCreate,
     showEdit: showEdit,
-    processEdit: processEdit
+    processEdit: processEdit,
+    deleteEvent: deleteEvent
 };
 // show all events
 function showEvents(req,res) { // функция показа
@@ -128,4 +129,13 @@ function processEdit(req, res) {
 
     });
 
+}
+// delete en event
+function deleteEvent(req, res) { // удаление ивента
+    Event.remove({slug: req.params.slug}, (err) => {
+        // set flash data
+        // redirect back to the events page
+        req.flash('success', 'Event deleted!'); // flash сообщение
+        res.redirect('/events'); // преенаправление
+    });
 }

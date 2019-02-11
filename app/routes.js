@@ -20,5 +20,6 @@ router.post('/events/create', eventsController.processCreate); // отправк
 router.get('/events/:slug/edit', eventsController.showEdit); // показ view для редактирования
 router.post('/events/:slug', eventsController.processEdit); //
 // delete events
+router.get('/events/:slug/delete', eventsController.deleteEvent); // удаление evets get зпросом
 // show a single event
 router.get('/events/:slug', eventsController.showSingle); // отображение одного ивента
