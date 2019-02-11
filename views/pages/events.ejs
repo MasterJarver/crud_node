@@ -1,6 +1,9 @@
 <div class="jumbotron text-center">
     <h1>All events</h1>
 </div>
+<% if(success.length > 0) { %>
+    <div class="alert alert-success"><%= success %></div>
+<% } %>
 <table class="table table-bordered table-hover table-striped">
     <thead>
     <tr>
@@ -17,6 +20,7 @@
                 <td>
                     <!-- ссылка на /events/ + event.slug -->
                     <a href="/events/<%= event.slug %>" class="btn btn-sm btn-primary">View</a>
+                    <a href="/events/<%= event.slug %>/edit" class="btn btn-sm btn-primary">Edit</a>
                 </td>
             </tr>
         <% } %>

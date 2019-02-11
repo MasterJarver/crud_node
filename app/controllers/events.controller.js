@@ -4,7 +4,9 @@ module.exports = { // экспрт функии получения даннх и
     showSingle: showSingle,
     seedEvents: seedEvents,
     showCreate: showCreate,
-    processCreate: processCreate
+    processCreate: processCreate,
+    showEdit: showEdit,
+    processEdit: processEdit
 };
 // show all events
 function showEvents(req,res) { // функция показа
@@ -15,7 +17,10 @@ function showEvents(req,res) { // функция показа
             res.send('Events not found');
         }
         //return a view with data
-        res.render('pages/events', {events: events}); // отображение по маршруту массива events
+        res.render('pages/events', { // отображение по маршруту массива events
+            events: events,
+            success: req.flash('success')
+        });
     });
 
 }
@@ -84,4 +89,43 @@ function processCreate(req, res) {
         // redirect to the newly created event
         res.redirect(`/events/${event.slug}`);
     })
+}
+// show the edit form
+function showEdit(req, res) {
+    Event.findOne({slug: req.params.slug}, (err, event) => {
+        res.render('pages/edit', {
+            event: event,
+            errors: req.flash('errors')
+        });
+    });
+}
+// process the edit form
+function processEdit(req, res) {
+    // validate information
+    req.checkBody('name', 'Name is required.').notEmpty(); // валидация тела запроса на пустоту
+    req.checkBody('description', 'Description is required.').notEmpty();
+    // if there are errors, redirect and save errors to flash
+    const errors = req.validationErrors(); // запись ошибок из ответа
+    if(errors) {
+        req.flash('errors', errors.map(err => err.msg));
+        return res.redirect(`events/${req.params.slug}/edit`); // перенаправление на форму создания ивентов
+    }
+    // finding a current event
+    Event.findOne({slug: req.params.slug}, (err, event) => { // поиск ивента по запросу
+        // updating  that event
+        event.name = req.body.name; // запись нового поля
+        event.description = req.body.description;
+        event.slug = req.body.name.toString().toLowerCase();
+        event.save((err) => {
+            if(err)
+                throw err;
+            // success flash message
+            req.flash('success', 'Successfully updated event.')
+            //redirect back to the /events
+            res.redirect('/events'); // преенаправление на /events
+        });
+
+
+    });
+
 }

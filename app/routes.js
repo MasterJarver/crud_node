@@ -17,6 +17,8 @@ router.get('/events/seed', eventsController.seedEvents); // запись в бд
 router.get('/events/create', eventsController.showCreate); // показ view для ввода
 router.post('/events/create', eventsController.processCreate); // отправка данных
 // edit events
+router.get('/events/:slug/edit', eventsController.showEdit); // показ view для редактирования
+router.post('/events/:slug', eventsController.processEdit); //
 // delete events
 // show a single event
 router.get('/events/:slug', eventsController.showSingle); // отображение одного ивента
