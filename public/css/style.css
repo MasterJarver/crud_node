@@ -38,3 +38,8 @@ body {
     bottom: 0;
     width: 100%;
 }
+.form-login-input, .form-password-input {
+    height: 1.7em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
