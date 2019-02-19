@@ -39,7 +39,11 @@ body {
     width: 100%;
 }
 .form-login-input, .form-password-input {
-    height: 1.7em;
-    margin-left: 1em;
-    margin-right: 1em;
+    height: 1.9em;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+}
+.button-signin, .button-register {
+    margin-right: 0.2em;
+    margin-left: 0.2em;
 }
