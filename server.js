@@ -11,8 +11,12 @@ const session = require('express-session'); // для работы с сесия
 const cookieParser = require('cookie-parser'); //парсер куки
 const flash = require('connect-flash'); // мудль для использования флеш сообшений
 const expressValidator = require('express-validator'); // моудль для валидации
+const fileStore = require('session-file-store')(session); // передача сессии в экземпляр модуль session-file-store
+const passport = require('passport'); // модуль для работы с аутентификацией и авторизацией
 // configure our application
 // set sessions and cookie parser
+app.use(express.json()); // возможность парсить json запросы
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser()); // использование cookieParser
 app.use(session({ // использование сессий
     secret: process.env.SECRET,
