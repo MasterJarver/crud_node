@@ -23,7 +23,6 @@ function showEvents(req,res) { // функция показа
             success: req.flash('success')
         });
     });
-
 }
 // show a single event
 function showSingle(req, res) {
@@ -121,7 +120,7 @@ function processEdit(req, res) {
             if(err)
                 throw err;
             // success flash message
-            req.flash('success', 'Successfully updated event.')
+            req.flash('success', 'Successfully updated event.');
             //redirect back to the /events
             res.redirect('/events'); // преенаправление на /events
         });

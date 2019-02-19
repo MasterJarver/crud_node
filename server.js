@@ -33,8 +33,6 @@ app.use(bodyParser.urlencoded({extended: true})); // использование 
 app.use(expressValidator()); // использование валидатора
 // set the routes
 app.use(require('./app/routes')); // use custom route
-
-
 // start our server
 app.listen(port, () => { // старт прослушки
     console.log(`Server listening on http://localhost:${port}`);
