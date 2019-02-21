@@ -3,11 +3,14 @@ const express = require('express'); // модуль express
 const router = express.Router(); // экземпляр роутера express
 const mainController = require('./controllers/main.controller'); // подключение главного контроллера
 const eventsController = require('./controllers/events.controller');
+const adminController = require('./controllers/admin.controller');
 // export router
 module.exports = router; // экспорт экземпляра роутера
 // define routes
 // main routes
-router.get('/', mainController.showHome); // отображение гравной страницы
+router.get('/', mainController.showHome); // отображение главной страницы
+// admin routes
+router.get('/admin', adminController.showAdminPage); // отображение админской страницы
 // event routes
 router.get('/events/', eventsController.showEvents); // отображение ивентов
 // seed events
@@ -20,6 +23,6 @@ router.post('/events/create', eventsController.processCreate); // отправк
 router.get('/events/:slug/edit', eventsController.showEdit); // показ view для редактирования
 router.post('/events/:slug', eventsController.processEdit); //
 // delete events
-router.get('/events/:slug/delete', eventsController.deleteEvent); // удаление evets get зпросом
+router.get('/events/:slug/delete', eventsController.deleteEvent); // удаление events get зпросом
 // show a single event
 router.get('/events/:slug', eventsController.showSingle); // отображение одного ивента
