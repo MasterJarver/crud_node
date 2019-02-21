@@ -13,6 +13,7 @@ const flash = require('connect-flash'); // мудль для использов�
 const expressValidator = require('express-validator'); // моудль для валидации
 const fileStore = require('session-file-store')(session); // передача сессии в экземпляр модуль session-file-store
 const passport = require('passport'); // модуль для работы с аутентификацией и авторизацией
+// require('./app/configs/config-passport');
 // configure our application
 // set sessions and cookie parser
 app.use(express.json()); // возможность парсить json запросы
@@ -29,6 +30,9 @@ app.use(session({ // использование сессий
     resave: false, // forces the session to be saved back
     saveUninitialized: false // don't save unmodified
 }));
+require('./app/configs/config-passport');
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());// использование flash сообщений
 // tell the express where to look for static assets
 app.use(express.static(__dirname + '/public')); // указать express где брать статические файлы

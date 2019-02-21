@@ -3,7 +3,7 @@ const passport = require('passport'); // модуль для работы с а�
 const LocalStrategy = require('passport-local').Strategy; // выбор стратегии аутентификации и авторизации
 const userDB = { // фейковый пользователь
     id: 1,
-    email: 'masterjarver@ukr.net', // логин
+    login: 'masterjarver@ukr.net', // логин
     password: '123' // пароль в явном виде(вообще пароль всегда нужно шифровать)
 };
 // serialize
@@ -19,8 +19,8 @@ passport.deserializeUser((id, done) => {
 });
 // local strategy
 passport.use(
-    new LocalStrategy({usernameField: 'email'}, (email, password, done) => {
-        if(email === userDB.email && password === userDB.password) { // проверка во время аутентификации
+    new LocalStrategy({usernameField: 'login'}, (login, password, done) => {
+        if(login === userDB.login && password === userDB.password) { // проверка во время аутентификации
             return done(null, userDB);
         }
         else {
@@ -28,3 +28,10 @@ passport.use(
         }
     })
 );
+let str1 = 'asd';
+module.exports = {
+    passport: passport,
+    LocalStrategy: LocalStrategy,
+    userDB: userDB,
+    str1: str1
+};

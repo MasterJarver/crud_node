@@ -9,13 +9,13 @@ module.exports = router; // экспорт экземпляра роутера
 // define routes
 // main routes
 router.get('/', mainController.showHome); // отображение главной страницы
+router.post('/', mainController.auth); // использоание встроенной аутентификации
 // admin routes
 router.get('/admin', adminController.showAdminPage); // отображение админской страницы
 // event routes
 router.get('/events/', eventsController.showEvents); // отображение ивентов
 // seed events
 router.get('/events/seed', eventsController.seedEvents); // запись в бд новых ивентов
-
 // create events
 router.get('/events/create', eventsController.showCreate); // показ view для ввода
 router.post('/events/create', eventsController.processCreate); // отправка данных
