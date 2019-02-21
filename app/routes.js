@@ -9,7 +9,7 @@ module.exports = router; // экспорт экземпляра роутера
 // main routes
 router.get('/', mainController.showHome); // отображение гравной страницы
 // event routes
-router.get('/events/',       eventsController.showEvents); // отображение ивентов
+router.get('/events/', eventsController.showEvents); // отображение ивентов
 // seed events
 router.get('/events/seed', eventsController.seedEvents); // запись в бд новых ивентов
 

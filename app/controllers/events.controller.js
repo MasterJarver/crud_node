@@ -1,16 +1,6 @@
 const Event = require('../models/event'); // подключение класса модели ивента
-module.exports = { // экспрт функии получения даннх ивентов
-    showEvents: showEvents,
-    showSingle: showSingle,
-    seedEvents: seedEvents,
-    showCreate: showCreate,
-    processCreate: processCreate,
-    showEdit: showEdit,
-    processEdit: processEdit,
-    deleteEvent: deleteEvent
-};
 // show all events
-function showEvents(req,res) { // функция показа
+let showEvents = (req,res) => { // функция показа
     // get all events
     Event.find({}, (err, events) => { // поиск всех записей в коллекции
         if(err) {
@@ -23,9 +13,9 @@ function showEvents(req,res) { // функция показа
             success: req.flash('success')
         });
     });
-}
+};
 // show a single event
-function showSingle(req, res) {
+let showSingle = (req, res) => {
     // get a single event
     Event.findOne({slug: req.params.slug}, (err, event) => { // ищем конкретную запись в бд
         if(err) {
@@ -37,9 +27,9 @@ function showSingle(req, res) {
             success: req.flash('success')
         });
     });
-}
+};
 // seed our database
-function seedEvents(req, res) {
+let seedEvents = (req, res) => {
     // create some events
     const events = [
         {name: 'Basketball', slug: 'basketball', description: 'Throwing into a basket.'},
@@ -56,15 +46,15 @@ function seedEvents(req, res) {
     });
     // seeded!
     res.send('Database seeded!');
-}
+};
 // show the create form
-function showCreate(req, res) {
+let showCreate = (req, res) => {
     res.render('pages/create', {
         errors: req.flash('errors') // отображение flash сообщений об ошибках
     });
-}
+};
 // process create form
-function processCreate(req, res) {
+let processCreate = (req, res) => {
     // validate information
     req.checkBody('name', 'Name is required.').notEmpty(); // валидация тела запроса на пустоту
     req.checkBody('description', 'Description is required.').notEmpty();
@@ -89,18 +79,18 @@ function processCreate(req, res) {
         // redirect to the newly created event
         res.redirect(`/events/${event.slug}`);
     })
-}
+};
 // show the edit form
-function showEdit(req, res) {
+let showEdit = (req, res) => {
     Event.findOne({slug: req.params.slug}, (err, event) => {
         res.render('pages/edit', {
             event: event,
             errors: req.flash('errors')
         });
     });
-}
+};
 // process the edit form
-function processEdit(req, res) {
+let processEdit = (req, res) => {
     // validate information
     req.checkBody('name', 'Name is required.').notEmpty(); // валидация тела запроса на пустоту
     req.checkBody('description', 'Description is required.').notEmpty();
@@ -124,17 +114,24 @@ function processEdit(req, res) {
             //redirect back to the /events
             res.redirect('/events'); // преенаправление на /events
         });
-
-
     });
-
-}
+};
 // delete en event
-function deleteEvent(req, res) { // удаление ивента
+let deleteEvent = (req, res) => { // удаление ивента
     Event.remove({slug: req.params.slug}, (err) => {
         // set flash data
         // redirect back to the events page
         req.flash('success', 'Event deleted!'); // flash сообщение
         res.redirect('/events'); // преенаправление
     });
-}
+};
+module.exports = { // экспрт функии получения данных ивентов
+    showEvents: showEvents,
+    showSingle: showSingle,
+    seedEvents: seedEvents,
+    showCreate: showCreate,
+    processCreate: processCreate,
+    showEdit: showEdit,
+    processEdit: processEdit,
+    deleteEvent: deleteEvent
+};
