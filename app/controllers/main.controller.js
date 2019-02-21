@@ -32,9 +32,6 @@ let showHomeLogin = (req, res, next) => {
             return res.redirect('/');
         }
     };
-    module.exports= {
-        auth: auth
-    };
     req.checkBody('login', 'Login is required.').notEmpty(); // валидация логина
     req.checkBody('password', 'Password is required.').notEmpty();
     const errors = req.validationErrors(); // запись ошибок из ответа

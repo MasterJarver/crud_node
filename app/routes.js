@@ -9,7 +9,7 @@ module.exports = router; // экспорт экземпляра роутера
 // define routes
 // main routes
 router.get('/', mainController.showHome); // отображение главной страницы
-router.post('/', mainController.auth); // использоание встроенной аутентификации
+router.post('/', mainController.showHomeLogin); // использоание встроенной аутентификации
 // admin routes
 router.get('/admin', adminController.showAdminPage); // отображение админской страницы
 // event routes
