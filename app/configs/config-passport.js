@@ -17,3 +17,14 @@ passport.deserializeUser((id, done) => {
     const user = (userDB.id === id) ? userDB : false;
     done(null, user); // сохранение в сессию пользовательского id
 });
+// local strategy
+passport.use(
+    new localStrategy({usernameField: 'email'}, (email, password, done) => {
+        if(email === userDB.email && password === userDB.password) { // проверка во время аутентификации
+            return done(null, userDB);
+        }
+        else {
+            return done(null, false);
+        }
+    })
+);
