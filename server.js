@@ -2,26 +2,27 @@
 require('dotenv').config(); // загрузка переменных окружения
 // grab our dependencies
 const express = require('express'); // модуль express
+const session = require('express-session'); // для работы с сесиями
+const fileStore = require('session-file-store')(session); // передача сессии в экземпляр модуль session-file-store
+const passport = require('passport'); // модуль для работы с аутентификацией и авторизацией
 const app = express(); // инициализация express приложения
 const port = process.env.PORT || 3000; // берем порт из окружения или 3000 по дефолту
 const expressLayouts = require('express-ejs-layouts'); // модуль для работы с шаблонами
 const mongoose = require('mongoose'); // модуль для работы с бд
 const bodyParser = require('body-parser'); // мудль для работы с телом POST запроса
-const session = require('express-session'); // для работы с сесиями
 const cookieParser = require('cookie-parser'); //парсер куки
 const flash = require('connect-flash'); // мудль для использования флеш сообшений
 const expressValidator = require('express-validator'); // моудль для валидации
-const fileStore = require('session-file-store')(session); // передача сессии в экземпляр модуль session-file-store
-const passport = require('passport'); // модуль для работы с аутентификацией и авторизацией
 // require('./app/configs/config-passport');
 // configure our application
 // set sessions and cookie parser
 app.use(express.json()); // возможность парсить json запросы
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser()); // использование cookieParser
-app.use(session({ // использование сессий
+app.use(
+    session({ // использование сессий
     secret: process.env.SECRET, // секретная строка для генерации подписи алгоритмом шифрования
-    store: new fileStore(), // место хранения сессии(простой файл в файловой системе)
+    store: new  fileStore(), // место хранения сессии(простой файл в файловой системе)
     cookie: { // настройка куки
         maxAge: 60000, // максимальное время жизни
         path: '/', // где куки работают, распространяются на всё приложение
@@ -31,8 +32,8 @@ app.use(session({ // использование сессий
     saveUninitialized: false // don't save unmodified
 }));
 require('./app/configs/config-passport');
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize()); // инициализация экземпляра пасспорта
+app.use(passport.session()); // подклбчение пасспорта к сессии
 app.use(flash());// использование flash сообщений
 // tell the express where to look for static assets
 app.use(express.static(__dirname + '/public')); // указать express где брать статические файлы

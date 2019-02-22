@@ -4,6 +4,7 @@ const router = express.Router(); // экземпляр роутера express
 const mainController = require('./controllers/main.controller'); // подключение главного контроллера
 const eventsController = require('./controllers/events.controller');
 const adminController = require('./controllers/admin.controller');
+require('./configs/config-passport'); // для всех роутов подключаем конфиг
 // export router
 module.exports = router; // экспорт экземпляра роутера
 // define routes
@@ -11,7 +12,8 @@ module.exports = router; // экспорт экземпляра роутера
 router.get('/', mainController.showHome); // отображение главной страницы
 router.post('/', mainController.showHomeLogin); // использоание встроенной аутентификации
 // admin routes
-router.get('/admin', adminController.showAdminPage); // отображение админской страницы
+router.get('/admin', adminController.auth, adminController.showAdminPage); // отображение админской страницы
+router.post('/login', adminController.login); // маршрут логина
 // event routes
 router.get('/events/', eventsController.showEvents); // отображение ивентов
 // seed events

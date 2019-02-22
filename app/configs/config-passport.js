@@ -15,16 +15,16 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
     console.log('Deserialize: ', id); // 1
     const user = (userDB.id === id) ? userDB : false;
-    done(null, user); // сохранение в сессию пользовательского id
+    done(null, user); //
 });
 // local strategy
 passport.use(
-    new LocalStrategy({usernameField: 'login'}, (login, password, done) => {
+    new LocalStrategy({usernameField: 'login'}, (login, password, done) => { // переопределение поля usernameField по умолчанию, данные от пользователя
         if(login === userDB.login && password === userDB.password) { // проверка во время аутентификации
-            return done(null, userDB);
+            return done(null, userDB); // проход аутентификации
         }
         else {
-            return done(null, false);
+            return done(null, false); // отказ в аутентификации
         }
     })
 );
